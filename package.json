@@ -1,0 +1,17 @@
+{
+  "name": "lista-tareas-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lista-tareas.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon lista-tareas.js"
+  },
+  "keywords": [],
+  "author": "Hugo Erazo",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^3.0.1",
+    "readline-sync": "^1.4.10"
+  }
+}
