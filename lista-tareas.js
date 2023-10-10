@@ -9,13 +9,26 @@ let descripcion= "Descripcion generica";
 const estado_incompleta= "Incompleta"
 
 function listarTareas() {
-    console.log("Lista de tareas:");
-    tareas.forEach((tarea) => {
-        console.log(`${tarea.id}. [${tarea.completada ? 'x' : ' '}] ${tarea.descripcion}`);
-    });
-    /* console.log(); */
+    if (tareas.length === 0) {
+        console.log("No hay tareas.");
+    } else {
+        console.log("Lista de tareas:");
+        tareas.forEach((tarea) => {
+            console.log(`${tarea.indicador}. [${tarea.estado ? 'x' : ' '}] ${tarea.descripcion}`);
+        });
+    }
 }
-console.log(listarTareas)
+
+// Función para obtener la descripción del usuario (debes definirla)
+function obtenerDescripcionUsuario() {
+    // Implementa esta función para obtener la descripción del usuario
+    const descripcion = readline.question("Ingresa la descripción de la nueva tarea: ");
+    return descripcion;
+}
+if (!descripcion) {
+    descripcion = obtenerDescripcionUsuario();
+}
+
 
 function mostrarMenu(){
     console.log('Selecciona una opción:');
@@ -32,32 +45,27 @@ function mostrarError(){
 }
 
 function agregarTarea(descripcion, estado = estado_incompleta){
-    const indicador =tareas.length + 1;
+    const indicador = tareas.length + 1;
+    // Crea una nueva tarea utilizando la descripción proporcionada
+    const nuevaTarea = { indicador, descripcion, estado };
+    tareas.push(nuevaTarea);
 }
 
-
+mostrarMenu();
 
 /* 1 */
 
 
-// Función para obtener la descripción del usuario (debes definirla)
-function obtenerDescripcionUsuario() {
-    // Implementa esta función para obtener la descripción del usuario
-    const descripcion = readline.question("Ingresa la descripción de la nueva tarea: ");
-    return descripcion;
-}
-if (!descripcion) {
-    descripcion = obtenerDescripcionUsuario();
-}
+
 // Función para mostrar un mensaje (debes definirla)
-function mostrarMensaje(mensaje) {
+//function mostrarMensaje(mensaje) {
     // Implementa esta función para mostrar mensajes
-}
+//}
 
 // Ejemplo de uso
-listarTareas();
-mostrarMenu();
+/* listarTareas();
 
+ */
 
 /* while (true) {
     console.log('Selecciona una opción:');
