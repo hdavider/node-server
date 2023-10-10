@@ -1,10 +1,11 @@
 const readline = require('readline-sync');
 
-const tareas = [
-    { indicador: 1, descripcion: "Hacer desayuno", estado: false },
-    { indicador: 2, descripcion: "Avanzar en proyecto", estado: false }
-];
 
+const tareas = [
+/*     { indicador: 1, descripcion: "Hacer desayuno", estado: false },
+    { indicador: 2, descripcion: "Avanzar en proyecto", estado: false } */
+];
+let descripcion= "Descripcion generica"; 
 const estado_incompleta= "Incompleta"
 
 function listarTareas() {
@@ -23,6 +24,7 @@ function mostrarMenu(){
     console.log('3. Eliminar tarea');
     console.log('4. Completar tarea');
     console.log('5. Salir'); 
+    const opcion = readline.question('Opción: ');
 }
 
 function mostrarError(){
@@ -33,12 +35,30 @@ function agregarTarea(descripcion, estado = estado_incompleta){
     const indicador =tareas.length + 1;
 }
 
+
+
+/* 1 */
+
+
+// Función para obtener la descripción del usuario (debes definirla)
+function obtenerDescripcionUsuario() {
+    // Implementa esta función para obtener la descripción del usuario
+    const descripcion = readline.question("Ingresa la descripción de la nueva tarea: ");
+    return descripcion;
+}
 if (!descripcion) {
-    descripcion=obtenerDescripcionUsuario();
+    descripcion = obtenerDescripcionUsuario();
+}
+// Función para mostrar un mensaje (debes definirla)
+function mostrarMensaje(mensaje) {
+    // Implementa esta función para mostrar mensajes
 }
 
-    tareas.push({ indicador, descripcion, estado });
-    mostrarMensaje(`Tareas #${indicador} agregada.`):
+// Ejemplo de uso
+listarTareas();
+mostrarMenu();
+
+
 /* while (true) {
     console.log('Selecciona una opción:');
     console.log('1. Listar tareas');
@@ -52,6 +72,7 @@ if (!descripcion) {
         case '1':
             listarTareas();
             break;
+
         case '2':
             const descripcionNuevaTarea = readline.question('Descripción de la nueva tarea: ');
             agregarTarea(descripcionNuevaTarea);
@@ -74,4 +95,4 @@ if (!descripcion) {
             console.log('Opción no válida. Inténtalo de nuevo.');
             break;
     }
-} */
+}  */
