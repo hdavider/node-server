@@ -29,6 +29,31 @@ if (!descripcion) {
     descripcion = obtenerDescripcionUsuario();
 }
 
+function completarTarea(indicador) {
+    const tarea = tareas.find((tarea) => tarea.indicador === indicador);
+    if (tarea) {
+        tarea.estado = true;
+        mostrarMensaje(`Tarea #${indicador} marcada como completada.`);
+    } else {
+        mostrarError('La tarea seleccionada no existe.');
+    }
+}
+
+// Función para mostrar un mensaje (debes definirla)
+function mostrarMensaje(mensaje) {
+    // Implementa esta función para mostrar mensajes
+}
+
+function eliminarTarea(indicador) {
+    const tareaEliminada = tareas.find((tarea) => tarea.indicador === indicador);
+    if (tareaEliminada) {
+        tareas = tareas.filter((tarea) => tarea.indicador !== indicador);
+        mostrarMensaje(`Tarea #${indicador} eliminada.`);
+    } else {
+        mostrarError('La tarea seleccionada no existe.');
+    }
+}
+
 
 function mostrarMenu(){
     console.log('Selecciona una opción:');
@@ -37,7 +62,7 @@ function mostrarMenu(){
     console.log('3. Eliminar tarea');
     console.log('4. Completar tarea');
     console.log('5. Salir'); 
-    const opcion = readline.question('Opción: ');
+    //const opcion = readline.question('Opción: ');
 }
 
 function mostrarError(){
@@ -57,10 +82,7 @@ mostrarMenu();
 
 
 
-// Función para mostrar un mensaje (debes definirla)
-//function mostrarMensaje(mensaje) {
-    // Implementa esta función para mostrar mensajes
-//}
+
 
 // Ejemplo de uso
 /* listarTareas();
