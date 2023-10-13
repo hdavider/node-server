@@ -62,7 +62,7 @@ function mostrarMenu(){
     console.log('3. Eliminar tarea');
     console.log('4. Completar tarea');
     console.log('5. Salir'); 
-    //const opcion = readline.question('Opción: ');
+    const opcion = readline.question('Opcion: ');
 }
 
 function mostrarError(){
