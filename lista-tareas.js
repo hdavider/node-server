@@ -13,12 +13,13 @@ function listarTareas() {
     } else {
         console.log("Lista de tareas:");
         tareas.forEach((tarea) => {
-            console.log(`${tarea.indicador}. [${tarea.estado ? 'x' : ' '}] ${tarea.descripcion}`);
+            const completada = tarea.estado ? 'X' : ' ';
+            console.log(`${tarea.indicador}. [${completada}] ${tarea.descripcion}`);
         });
     }
 }
 
-// Función para obtener la descripción del usuario (debes definirla)
+
 function obtenerDescripcionUsuario() {
     // Implementa esta función para obtener la descripción del usuario
     const descripcion = readline.question("Ingresa la descripción de la nueva tarea: ");
@@ -49,6 +50,14 @@ function eliminarTarea(indicador) {
     if (tareaEliminadaIndex !== -1) {
         tareas.splice(tareaEliminadaIndex, 1);
         mostrarMensaje(`Tarea #${indicador} eliminada.`);
+
+        // Recalcula los índices de las tareas restantes
+        tareas.forEach((tarea, index) => {
+            tarea.indicador = index + 1;
+        });
+
+        // Muestra la lista actualizada
+        listarTareas();
     } else {
         mostrarError('La tarea seleccionada no existe.');
     }
