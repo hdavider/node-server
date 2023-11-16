@@ -1,12 +1,33 @@
-const readline = require('readline-sync');
+const http = require('http');
+const host = 'localhost';
+const port = 5000;
+const server = http.createServer((req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
 
+    // Modificar la estructura de cada tarea
+    const tareasConDetalles = tareas.map((tarea) => {
+        return {
+            id: tarea.indicador,
+            descripcion: tarea.descripcion,
+            estado: tarea.estado ? 'completada' : 'pendiente',
+        };
+    });
 
+    // Devolver las tareas en formato JSON
+    const responseBody = JSON.stringify({ tareas: tareasConDetalles });
+    res.end(responseBody);
+});
+
+// Agregar información adicional a cada tarea
 const tareas = [
-
+    { indicador: 1, descripcion: 'Tarea 1', estado: false },
+    { indicador: 2, descripcion: 'Tarea 2', estado: true },
+    // ... Agrega más tareas si es necesario
 ];
-let descripcion= "Descripcion generica"; 
-const estado_incompleta= "Incompleta"
-let completada = ' ';
+
+let descripcion = "Descripcion generica";
+const estadoIncompleta = "Incompleta";
 
 function listarTareas() {
     if (tareas.length === 0) {
