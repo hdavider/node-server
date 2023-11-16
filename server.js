@@ -9,7 +9,7 @@ const server = http.createServer((req, res) => {
     const { method, url } = req;
 
     if (method === 'GET' && url === '/') {
-        // Serve the HTML file
+        // HTML
         const filePath = path.join(__dirname, 'index.html');
         fs.readFile(filePath, 'utf8', (err, data) => {
             if (err) {
@@ -21,12 +21,12 @@ const server = http.createServer((req, res) => {
             }
         });
     } else if (method === 'GET' && url === '/tareas') {
-        // Return the list of tasks as JSON with indices
+        // Retornar los valores como JSON
         const tareasConIndice = tareas.map((tarea, indice) => ({ ...tarea, indice: indice + 1 }));
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify(tareasConIndice));
     } else if (method === 'POST' && url === '/tareas') {
-        // Handle adding a new task
+        // añadir nueva tarea
         let data = '';
 
         req.on('data', (chunk) => {
@@ -40,7 +40,7 @@ const server = http.createServer((req, res) => {
             res.end(JSON.stringify({ message: 'Tarea agregada correctamente.' }));
         });
     } else if (method === 'PUT' && url === '/tareas') {
-        // Handle marking a task as completed
+        // tarea completada
         let data = '';
 
         req.on('data', (chunk) => {
@@ -60,7 +60,7 @@ const server = http.createServer((req, res) => {
             }
         });
     } else if (method === 'DELETE' && url.startsWith('/tareas')) {
-        // Handle deleting a task
+        // manejar eliminar tarea 
         const indice = parseInt(url.split('=')[1], 10);
         const tareaEliminada = eliminarTarea(indice);
 
@@ -72,7 +72,7 @@ const server = http.createServer((req, res) => {
             res.end(JSON.stringify({ message: 'La tarea no existe.' }));
         }
     } else {
-        // Handle 404 Not Found
+        // manejar error 404
         res.writeHead(404, { 'Content-Type': 'text/plain' });
         res.end('404 Not Found');
     }
